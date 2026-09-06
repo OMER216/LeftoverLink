@@ -21,4 +21,7 @@ RUN mkdir -p database storage/framework/cache storage/framework/sessions \
 
 EXPOSE 10000
 
-CMD php artisan config:cache && php artisan route:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
+# At runtime: cache config, run migrations, start server
+CMD php artisan config:cache && \
+    php artisan migrate --force && \
+    php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
